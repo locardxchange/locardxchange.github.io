@@ -5,125 +5,493 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>locarDXchange</title>
     <style>
+        :root {
+            --royal-navy: #07142f;
+            --midnight: #020816;
+            --royal-purple: #24104f;
+            --burgundy: #4b0f28;
+            --gold: #d6ad4f;
+            --bright-gold: #f2d27a;
+            --ivory: #f8f1df;
+            --soft-ivory: #fffaf0;
+            --ink: #1f1a14;
+            --muted: #6d604b;
+            --panel: rgba(255, 250, 240, 0.94);
+            --line: rgba(214, 173, 79, 0.45);
+            --shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
         body {
-            font-family: Arial, sans-serif;
+            height: 100%;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: var(--ink);
             min-height: 100vh;
+            background:
+                radial-gradient(circle at 12% 12%, rgba(242, 210, 122, 0.20), transparent 28%),
+                radial-gradient(circle at 88% 10%, rgba(139, 92, 246, 0.22), transparent 30%),
+                radial-gradient(circle at 50% 100%, rgba(214, 173, 79, 0.18), transparent 34%),
+                linear-gradient(135deg, var(--midnight), var(--royal-navy) 48%, var(--royal-purple));
             display: flex;
             flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(214, 173, 79, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(214, 173, 79, 0.08) 1px, transparent 1px);
+            background-size: 54px 54px;
+            mask-image: linear-gradient(to bottom, black, transparent 88%);
+        }
+
+        body::after {
+            content: "✦";
+            position: fixed;
+            right: 5vw;
+            top: 7vh;
+            color: rgba(242, 210, 122, 0.22);
+            font-size: 14rem;
+            pointer-events: none;
+            transform: rotate(12deg);
+        }
+
+        .content-wrap {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         header {
-            background-color: #3e4a33; /* Military olive green */
-            color: white;
-            padding: 15px 0;
+            position: relative;
+            padding: 38px 20px 34px;
             text-align: center;
+            color: var(--ivory);
+            background:
+                linear-gradient(90deg, rgba(2, 8, 22, 0.88), rgba(36, 16, 79, 0.72), rgba(2, 8, 22, 0.88));
+            border-bottom: 1px solid var(--line);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.30);
+            overflow: hidden;
+        }
+
+        header::before,
+        header::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(900px, 84vw);
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        header::before {
+            top: 18px;
+        }
+
+        header::after {
+            bottom: 18px;
+        }
+
+        .crest {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 14px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            border: 1px solid var(--line);
+            background:
+                radial-gradient(circle at 50% 30%, rgba(242, 210, 122, 0.34), transparent 58%),
+                rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 40px rgba(214, 173, 79, 0.28);
+            color: var(--bright-gold);
+            font-size: 2.2rem;
         }
 
         h1 {
             margin: 0;
-            font-size: 2.5rem;
-            font-family: 'Georgia', serif;
+            font-size: clamp(2.4rem, 7vw, 5rem);
+            font-family: Georgia, 'Times New Roman', serif;
+            letter-spacing: 0.02em;
+            font-weight: normal;
+            text-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
         }
 
-        .profile-section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 20px;
-            flex-grow: 1;
-        }
-
-        .profile-pic {
-            border: 3px solid #333;
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            margin-right: 20px;
-            border-radius: 50%;
-        }
-
-        .contact-info {
-            font-size: 1.2rem;
-        }
-
-        .contact-info a {
-            color: #3e4a33; /* Olive green */
-            text-decoration: none;
-        }
-
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
-
-        .artist-description {
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            flex-grow: 1;
-        }
-
-        .artist-description h2 {
-            text-align: center;
-            font-size: 1.8rem;
-            font-family: 'Georgia', serif;
-            color: #3e4a33; /* Olive green */
-        }
-
-        .artist-description p {
-            line-height: 1.6;
-            color: #333;
-        }
-
-        footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #3e4a33; /* Olive green */
-            color: white;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
-
-        /* Ensure footer stays at bottom */
-        body, html {
-            height: 100%;
-        }
-
-        /* Styling to ensure footer placement when content is short */
-        .content-wrap {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+        .subtitle {
+            margin: 12px auto 0;
+            color: rgba(248, 241, 223, 0.82);
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            font-size: 0.84rem;
         }
 
         .main-content {
             flex-grow: 1;
+            width: min(1120px, calc(100% - 34px));
+            margin: 34px auto;
         }
 
+        .profile-section {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 34px;
+            align-items: center;
+            padding: 34px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background:
+                linear-gradient(135deg, rgba(255, 250, 240, 0.98), rgba(248, 241, 223, 0.90));
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-section::before {
+            content: "";
+            position: absolute;
+            inset: 14px;
+            border: 1px solid rgba(214, 173, 79, 0.30);
+            border-radius: 22px;
+            pointer-events: none;
+        }
+
+        .profile-frame {
+            position: relative;
+            width: 190px;
+            height: 190px;
+            display: grid;
+            place-items: center;
+        }
+
+        .profile-frame::before {
+            content: "";
+            position: absolute;
+            inset: -10px;
+            border-radius: 50%;
+            background: conic-gradient(from 120deg, var(--gold), var(--bright-gold), #8c6b2a, var(--gold));
+            box-shadow: 0 16px 38px rgba(92, 58, 9, 0.28);
+        }
+
+        .profile-frame::after {
+            content: "✦";
+            position: absolute;
+            right: -8px;
+            top: 3px;
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            color: var(--royal-navy);
+            background: var(--bright-gold);
+            border: 2px solid var(--soft-ivory);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.22);
+        }
+
+        .profile-pic {
+            position: relative;
+            z-index: 1;
+            border: 5px solid var(--soft-ivory);
+            width: 170px;
+            height: 170px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .contact-info {
+            position: relative;
+            z-index: 1;
+            font-size: 1.08rem;
+            line-height: 1.55;
+        }
+
+        .contact-info::before {
+            content: "Dx Mercado";
+            display: inline-block;
+            margin-bottom: 14px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--royal-navy), var(--royal-purple));
+            color: var(--bright-gold);
+            border: 1px solid var(--line);
+            letter-spacing: 0.10em;
+            text-transform: uppercase;
+            font-size: 0.76rem;
+            font-weight: bold;
+        }
+
+        .contact-info p {
+            margin: 9px 0;
+        }
+
+        .contact-info a {
+            color: #2d4c85;
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 1px solid rgba(45, 76, 133, 0.25);
+            transition: 0.2s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--burgundy);
+            border-bottom-color: var(--burgundy);
+        }
+
+        .code-section {
+            margin: 26px auto;
+            background:
+                linear-gradient(135deg, rgba(36, 16, 79, 0.95), rgba(7, 20, 47, 0.95));
+            color: var(--ivory);
+            padding: 30px;
+            border-radius: 28px;
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .code-section::before,
+        .code-section::after {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(242, 210, 122, 0.20), transparent 70%);
+            pointer-events: none;
+        }
+
+        .code-section::before {
+            left: -70px;
+            top: -70px;
+        }
+
+        .code-section::after {
+            right: -70px;
+            bottom: -70px;
+        }
+
+        .code-section h2 {
+            position: relative;
+            z-index: 1;
+            margin: 0 0 8px;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-weight: normal;
+            font-size: 2rem;
+            color: var(--bright-gold);
+        }
+
+        .code-section p {
+            position: relative;
+            z-index: 1;
+            margin: 0 auto 18px;
+            max-width: 560px;
+            color: rgba(248, 241, 223, 0.78);
+            line-height: 1.6;
+        }
+
+        .code-form {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .code-form input {
+            width: min(420px, 92%);
+            padding: 15px 16px;
+            border: 1px solid rgba(242, 210, 122, 0.62);
+            border-radius: 999px;
+            font-size: 1rem;
+            outline: none;
+            background: rgba(255, 250, 240, 0.95);
+            color: var(--ink);
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .code-form input:focus {
+            box-shadow: 0 0 0 4px rgba(242, 210, 122, 0.22), inset 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .code-form button {
+            padding: 15px 24px;
+            border: 1px solid rgba(255, 250, 240, 0.42);
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--bright-gold), var(--gold));
+            color: var(--midnight);
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.24);
+            transition: 0.22s ease;
+        }
+
+        .code-form button:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.05);
+        }
+
+        .artist-description {
+            margin: 26px auto 0;
+            background: var(--panel);
+            padding: 36px;
+            border-radius: 28px;
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .artist-description::before {
+            content: "";
+            position: absolute;
+            inset: 14px;
+            border: 1px solid rgba(214, 173, 79, 0.28);
+            border-radius: 22px;
+            pointer-events: none;
+        }
+
+        .artist-description h2 {
+            position: relative;
+            text-align: center;
+            margin: 0 0 28px;
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            font-family: Georgia, 'Times New Roman', serif;
+            font-weight: normal;
+            color: var(--royal-navy);
+            letter-spacing: 0.02em;
+        }
+
+        .artist-description h2::after {
+            content: "";
+            display: block;
+            width: min(360px, 70%);
+            height: 1px;
+            margin: 18px auto 0;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .artist-description p {
+            position: relative;
+            line-height: 1.78;
+            color: #332a1d;
+            font-size: 1.03rem;
+            margin: 0 0 18px;
+            text-align: justify;
+        }
+
+        .artist-description p:first-of-type::first-letter {
+            float: left;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 4.4rem;
+            line-height: 0.88;
+            padding: 7px 12px 0 0;
+            color: var(--gold);
+        }
+
+        footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 20px 10px;
+            background:
+                linear-gradient(90deg, rgba(2, 8, 22, 0.96), rgba(36, 16, 79, 0.88), rgba(2, 8, 22, 0.96));
+            color: var(--bright-gold);
+            border-top: 1px solid var(--line);
+            letter-spacing: 0.08em;
+            font-weight: bold;
+        }
+
+        @media (max-width: 760px) {
+            .main-content {
+                width: min(100% - 24px, 1120px);
+                margin: 22px auto;
+            }
+
+            .profile-section {
+                grid-template-columns: 1fr;
+                justify-items: center;
+                text-align: center;
+                padding: 26px 20px;
+            }
+
+            .profile-frame {
+                width: 170px;
+                height: 170px;
+            }
+
+            .profile-pic {
+                width: 150px;
+                height: 150px;
+            }
+
+            .artist-description,
+            .code-section {
+                padding: 26px 20px;
+            }
+
+            .artist-description p {
+                text-align: left;
+            }
+
+            .artist-description p:first-of-type::first-letter {
+                float: none;
+                font-size: inherit;
+                line-height: inherit;
+                padding: 0;
+                color: inherit;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="content-wrap">
         <header>
+            <div class="crest">♛</div>
             <h1>locarDXchange</h1>
+            <p class="subtitle">Artistry · Forensics · Scholarship</p>
         </header>
 
         <div class="main-content">
             <section class="profile-section">
-                <img src="dxmercado.jpg" alt="Dx Mercado" class="profile-pic">
-                <div class="contact-info">
-                    <p>Email: <a href="mailto:drmercado@up.edu.ph">drmercado@up.edu.ph</a></p>
-                    <p>Phone: <a href="tel:+639157813414">0915.781.3414</a></p>
-                    <p>Website: <a href="https://dxmercado.github.io/" target="_blank">http://dxmercado.com</a></p>
-                    <p>Facebook: <a href="https://www.facebook.com/locardexchange" target="_blank">www.facebook.com/locardexchange</a></p>
+                <div class="profile-frame">
+                    <img src="dxmercado.jpeg" alt="Dx Mercado" class="profile-pic">
                 </div>
+
+                <div class="contact-info">
+                    <p><b>Email:</b> drmercado@up.edu.ph</p>
+                    <p><b>Phone:</b> 0915.781.3414</p>
+                    <p><b>Website:</b> <a href="https://dxmercado.github.io/" target="_blank">http://dxmercado.com</a></p>
+                    <p><b>Facebook:</b> <a href="https://www.facebook.com/locardexchange" target="_blank">www.facebook.com/locardexchange</a></p>
+                </div>
+            </section>
+
+            <section class="code-section">
+                <h2>Enter Code</h2>
+                <p>Type the access code to open its corresponding page.</p>
+                <form class="code-form" id="codeForm">
+                    <input type="text" id="codeInput" placeholder="Enter Code" autocomplete="off" required>
+                    <button type="submit">Open Page</button>
+                </form>
             </section>
 
             <section class="artist-description">
@@ -142,17 +510,27 @@
                 </p>
             </section>
         </div>
+
         <footer>
-            <font color="white">
-            <p>
-                |
- <a href="001/index.html" target="_parent"> capstone </a>
-                |
-            </p>
-            </font>
+            www.dxmercado.com
         </footer>
     </div>
+
+    <script>
+        document.getElementById('codeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const codeInput = document.getElementById('codeInput');
+            const code = codeInput.value.trim();
+
+            if (code === '') {
+                alert('Please enter a code.');
+                codeInput.focus();
+                return;
+            }
+
+            window.location.href = code + '.html';
+        });
+    </script>
 </body>
 </html>
-
-
