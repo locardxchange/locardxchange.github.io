@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Havighurst Developmental Tasks (Dx Mercado)</title>
+  <meta name="description" content="A written response to a class task about Havighurst’s developmental tasks, supported by personal experiences and references." />
+
+  <style>
+    :root{
+      --bg: #0b1220;
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --line: rgba(255,255,255,.12);
+      --accent: #7c5cff;
+      --accent2: #22c55e;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius: 18px;
+      --radius2: 26px;
+      --maxw: 980px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 800px at 10% 10%, rgba(124,92,255,.25), transparent 60%),
+        radial-gradient(900px 700px at 90% 20%, rgba(34,197,94,.18), transparent 55%),
+        radial-gradient(800px 700px at 50% 110%, rgba(255,255,255,.08), transparent 55%),
+        var(--bg);
+      line-height:1.65;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    a.underline{ text-decoration: underline; text-underline-offset: 3px; }
+    a:hover{ color:white; }
+
+    .wrap{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 34px 18px 72px;
+    }
+
+    .paper{
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: var(--radius2);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .paper::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:
+        radial-gradient(900px 420px at 30% 0%, rgba(124,92,255,.25), transparent 60%),
+        radial-gradient(800px 420px at 90% 0%, rgba(34,197,94,.18), transparent 55%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .paper > *{ position:relative; z-index:1; }
+
+    .pad{ padding: 22px 22px; }
+    @media (max-width:520px){ .pad{ padding: 18px 16px; } }
+
+    .badgeRow{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom: 10px;
+    }
+
+    .badge{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.20);
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: .2px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .dot{
+      width:8px; height:8px; border-radius:999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 3px rgba(124,92,255,.15);
+    }
+
+    h1{
+      margin: 10px 0 8px;
+      font-size: clamp(20px, 2.4vw, 30px);
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+
+    .promptBox{
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.20);
+      border-radius: var(--radius);
+      padding: 14px 14px;
+      margin: 12px 0 14px;
+    }
+    .promptBox .label{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom: 8px;
+      color: rgba(255,255,255,.86);
+      font-weight: 650;
+      letter-spacing: -0.01em;
+    }
+    .promptBox p{
+      margin: 0 0 10px;
+      color: rgba(255,255,255,.86);
+    }
+    .criteria{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.86);
+    }
+    .critItem{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      border-radius: 14px;
+      padding: 10px 12px;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .critItem .right{
+      font-family: var(--mono);
+      color: rgba(255,255,255,.80);
+      background: rgba(0,0,0,.20);
+      border: 1px solid rgba(255,255,255,.10);
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      align-self:center;
+    }
+    .total{
+      margin-top: 8px;
+      font-family: var(--mono);
+      color: rgba(255,255,255,.82);
+      text-align:right;
+    }
+
+    .answer{
+      border-top: 1px solid rgba(255,255,255,.10);
+      padding-top: 14px;
+      margin-top: 10px;
+    }
+    .answer p{ margin: 0 0 12px; color: rgba(255,255,255,.88); }
+
+    .cite{
+      display:inline-flex;
+      align-items:center;
+      gap: 6px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      color: rgba(255,255,255,.86);
+      font-size: 13px;
+      white-space: nowrap;
+      vertical-align: baseline;
+      transform: translateY(-1px);
+      margin-left: 4px;
+    }
+    .cite:hover{
+      border-color: rgba(255,255,255,.26);
+      background: rgba(0,0,0,.24);
+    }
+
+    .refs{
+      border-top: 1px solid rgba(255,255,255,.10);
+      margin-top: 14px;
+      padding-top: 12px;
+    }
+    .refs h2{
+      margin: 0 0 10px;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+    }
+    .ref{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      border-radius: 14px;
+      padding: 12px 12px;
+      margin-bottom: 10px;
+    }
+    .ref .head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom: 6px;
+    }
+    .ref code{
+      font-family: var(--mono);
+      color: rgba(255,255,255,.80);
+      background: rgba(0,0,0,.22);
+      border: 1px solid rgba(255,255,255,.10);
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+    }
+    .ref .text{
+      color: rgba(255,255,255,.86);
+      font-size: 14px;
+    }
+    .ref a.out{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-top: 8px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.16);
+      color: rgba(255,255,255,.92);
+      width: fit-content;
+    }
+    .ref a.out:hover{
+      border-color: rgba(255,255,255,.26);
+      background: rgba(0,0,0,.24);
+    }
+
+    @media print{
+      body{ background:white; color:#111; }
+      .paper{ box-shadow:none; background:white; }
+      .badge, .promptBox, .critItem, .cite, .ref{ background:#f7f7f7; color:#111; border-color:#ddd; }
+      .paper::before{ display:none; }
+      a{ color:#111; text-decoration:underline; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="paper">
+      <div class="pad">
+
+        <div class="badgeRow">
+          <div class="badge"><span class="dot"></span><span>Task Submission</span></div>
+          <div class="badge"><span class="muted">Author:</span> Dx Mercado</div>
+        </div>
+
+        <h1>Activity 1</h1>
+
+        <div class="promptBox">
+          <div class="label">
+            <span>Havighurst Developmental Tasks (Reflection Question)</span>
+            <span class="muted" style="font-family: var(--mono); font-size:12px;">Total: 20 points</span>
+          </div>
+
+          <p>
+            Havighurst's concept on developmental task emphasizes that
+            “When people fail to accomplish developmental tasks at a stage, they're often unhappy and are not accorded the desired approval by society”.
+            Do you agree or disagree with this? Provide personal experiences to support your discussion.
+          </p>
+
+          <div class="criteria" aria-label="Criteria list">
+            <div class="critItem"><span>1. Depth of Discussion</span><span class="right">10 points</span></div>
+            <div class="critItem"><span>2. Organization of Ideas</span><span class="right">5 points</span></div>
+            <div class="critItem"><span>3. Mechanics</span><span class="right">5 points</span></div>
+            <div class="total">Total: 20 points</div>
+          </div>
+        </div>
+
+        <div class="answer" id="answer">
+          <p>
+            I agree with Havighurst’s claim. Developmental tasks are socially patterned expectations that arise in particular life periods, shaped by maturation,
+            sociocultural demands, and personal values; as a result, these “tasks” become public markers of readiness and legitimacy. When a person deviates from
+            what is expected at a stage, the consequences are often internal tension and external disapproval, because society uses these milestones to decide who
+            is “on track” and who is not <a class="cite" href="#ref-havighurst">Havighurst (1953)</a>.
+          </p>
+
+          <p>
+            My experience at the Philippine Science High School shows how developmental tasks operate as enforced social scripts. In our setting, taking and passing
+            the University of the Philippines College Admission Test (UPCAT) was treated as a near-obligatory task for a college-bound student—less a personal option
+            than a norm tied to identity and prestige. I did not accomplish my UPCAT form at first, and I was the only one who broke that norm. My guidance counselor
+            called me in and pushed me to file it, and I eventually took the UPCAT primarily because of societal pressure. In the same period, I graduated last in rank:
+            71st out of 71. Ranking is a visible label that people easily treat as a forecast of your future, yet internally I believed I was set for life because I knew
+            I was versatile. That mismatch between institutional evaluation and self-concept created real friction, which is consistent with Havighurst’s point that
+            failing—or refusing—to follow a stage expectation can invite unhappiness and reduced approval <a class="cite" href="#ref-havighurst">Havighurst (1953)</a>.
+          </p>
+
+          <p>
+            In college, the developmental-task pressure shifted from admission performance to credential completion. I was taking BS Civil Engineering in UP, but I did not
+            care about it; instead, I delved into arts, film, and sports, and I earned early—sometimes twice or thrice what I later earned as an assistant professor in UC.
+            In athletic competitions, art exhibits, and film festivals, I often felt at the center of the spotlight because performance mattered, and recognition was immediate.
+            However, whenever I shared my radical view that I did not need a degree and that education had become too commercialized, I could sense disagreement even in
+            microexpressions. That was a reminder that society protects credential norms as gatekeeping mechanisms for legitimacy. Over time, I realized I could not take down
+            the structure through resistance alone; I had to complete the task the system recognizes. I stealthily transferred to UC and dedicated five years to finish both my
+            undergraduate degree and master’s—society won. Even then, completion did not feel socially sufficient; I pushed to finish my master’s cum laude, and with some luck
+            I fulfilled that expectation—unwillingly, but successfully. This sequence reflects the force of developmental tasks: society does not only impose milestones; it can
+            escalate what counts as acceptable accomplishment, and the desire for approval and legitimacy can shape decisions even when one’s competence is formed beyond formal
+            schooling <a class="cite" href="#ref-havighurst">Havighurst (1953)</a>. Personal experience details are documented in my portfolio site
+            <a class="cite" href="#ref-personal">Mercado (2026)</a>.
+          </p>
+        </div>
+
+        <div class="refs" id="references">
+          <h2>References</h2>
+
+          <div class="ref" id="ref-havighurst" data-url="https://www.encyclopedia.com/education/encyclopedias-almanacs-transcripts-and-maps/developmental-tasks">
+            <div class="head">
+              <strong>Havighurst (1953)</strong>
+              <code>REF-01</code>
+            </div>
+            <div class="text" data-ref-text>
+              Developmental tasks. (2026). In <em>Encyclopedia of Aging</em>. Encyclopedia.com. Retrieved January 25, 2026, from
+              https://www.encyclopedia.com/education/encyclopedias-almanacs-transcripts-and-maps/developmental-tasks
+            </div>
+          </div>
+
+          <div class="ref" id="ref-personal" data-url="https://locardxchange.github.io">
+            <div class="head">
+              <strong>Personal experience source</strong>
+              <code>REF-02</code>
+            </div>
+            <div class="text" data-ref-text>
+              Mercado, D. S. R. (2026). <em>Locard Xchange</em> [Personal website]. Retrieved January 25, 2026, from
+              https://locardxchange.github.io
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Auto-link reference URLs and add "Open source" buttons.
+    (function autoLinkReferences(){
+      const refs = document.querySelectorAll('[data-url]');
+      refs.forEach(ref => {
+        const url = ref.getAttribute('data-url');
+        const textEl = ref.querySelector('[data-ref-text]');
+        if (textEl && url) {
+          const html = textEl.innerHTML;
+          const safeUrl = url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          const re = new RegExp(safeUrl);
+          textEl.innerHTML = html.replace(
+            re,
+            `<a class="underline" href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`
+          );
+        }
+        if (url && !ref.querySelector('a.out')) {
+          const a = document.createElement('a');
+          a.className = 'out';
+          a.href = url;
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+          a.innerHTML = `Open source <span aria-hidden="true">↗</span>`;
+          ref.appendChild(a);
+        }
+      });
+    })();
+
+    // Smooth scroll for internal anchor links.
+    (function smoothScroll(){
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', (e) => {
+          const id = a.getAttribute('href');
+          if (!id || id === '#') return;
+          const target = document.querySelector(id);
+          if (!target) return;
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          history.pushState(null, '', id);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grade 12 Mini-Acceptable Use Policy Digital Board</title>
+  <style>
+    :root {
+      --navy: #09111f;
+      --deep-blue: #102a56;
+      --electric-blue: #1d7afc;
+      --cyan: #35d3ff;
+      --mint: #3ff0b5;
+      --yellow: #ffd166;
+      --orange: #ff8a3d;
+      --pink: #ff4f9a;
+      --white: #ffffff;
+      --soft: rgba(255, 255, 255, 0.86);
+      --glass: rgba(255, 255, 255, 0.12);
+      --glass-strong: rgba(255, 255, 255, 0.18);
+      --border: rgba(255, 255, 255, 0.24);
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(53, 211, 255, 0.30), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(255, 79, 154, 0.25), transparent 30%),
+        radial-gradient(circle at 50% 100%, rgba(63, 240, 181, 0.20), transparent 34%),
+        linear-gradient(135deg, var(--navy), var(--deep-blue) 48%, #180d36);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    .page-grid {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.24;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(to bottom, black, transparent 85%);
+    }
+
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(8px);
+      opacity: 0.42;
+      pointer-events: none;
+      animation: float 10s ease-in-out infinite alternate;
+    }
+
+    .orb.one {
+      width: 180px;
+      height: 180px;
+      background: var(--cyan);
+      left: -60px;
+      top: 16%;
+    }
+
+    .orb.two {
+      width: 240px;
+      height: 240px;
+      background: var(--pink);
+      right: -80px;
+      top: 45%;
+      animation-delay: 1.8s;
+    }
+
+    .orb.three {
+      width: 170px;
+      height: 170px;
+      background: var(--mint);
+      left: 18%;
+      bottom: -70px;
+      animation-delay: 3s;
+    }
+
+    @keyframes float {
+      from { transform: translateY(0) scale(1); }
+      to { transform: translateY(-30px) scale(1.08); }
+    }
+
+    header {
+      position: relative;
+      padding: 44px 6vw 24px;
+      z-index: 2;
+    }
+
+    .top-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--glass);
+      backdrop-filter: blur(16px);
+      color: var(--soft);
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .pulse-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--mint);
+      box-shadow: 0 0 22px var(--mint);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 32px;
+      align-items: center;
+      margin-top: 28px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 5.8rem);
+      line-height: 0.94;
+      letter-spacing: -0.07em;
+      max-width: 940px;
+    }
+
+    .hero h1 span {
+      display: block;
+      background: linear-gradient(90deg, var(--cyan), var(--mint), var(--yellow));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      margin-top: 24px;
+      color: var(--soft);
+      font-size: clamp(1rem, 1.7vw, 1.28rem);
+      line-height: 1.7;
+      max-width: 760px;
+    }
+
+    .hero-panel {
+      position: relative;
+      min-height: 360px;
+      border: 1px solid var(--border);
+      background: linear-gradient(160deg, rgba(255,255,255,0.16), rgba(255,255,255,0.06));
+      backdrop-filter: blur(20px);
+      border-radius: 36px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+      overflow: hidden;
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: -90px -40px auto auto;
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(53, 211, 255, 0.75), transparent 70%);
+    }
+
+    .shield {
+      position: relative;
+      display: grid;
+      place-items: center;
+      height: 210px;
+      margin-top: 8px;
+    }
+
+    .shield-icon {
+      width: 155px;
+      height: 185px;
+      background: linear-gradient(145deg, var(--electric-blue), var(--cyan));
+      clip-path: polygon(50% 0, 91% 18%, 84% 72%, 50% 100%, 16% 72%, 9% 18%);
+      box-shadow: 0 0 44px rgba(53, 211, 255, 0.55);
+      display: grid;
+      place-items: center;
+      font-size: 3.5rem;
+    }
+
+    .status-card {
+      position: absolute;
+      background: rgba(9, 17, 31, 0.72);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 12px 14px;
+      backdrop-filter: blur(12px);
+      font-size: 0.86rem;
+      color: var(--soft);
+    }
+
+    .status-card strong {
+      color: var(--white);
+    }
+
+    .status-card.a { left: 0; top: 26px; }
+    .status-card.b { right: 0; bottom: 34px; }
+    .status-card.c { left: 18px; bottom: 0; }
+
+    .grade-badge {
+      margin-top: 28px;
+      padding: 18px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.10);
+      border: 1px solid var(--border);
+    }
+
+    .grade-badge small {
+      color: var(--soft);
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+    }
+
+    .grade-badge h2 {
+      margin-top: 6px;
+      font-size: 1.7rem;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 14px 6vw;
+      background: rgba(9, 17, 31, 0.74);
+      backdrop-filter: blur(18px);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: rgba(255,255,255,0.08);
+      transition: 0.25s ease;
+      font-size: 0.92rem;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: rgba(53, 211, 255, 0.18);
+      border-color: rgba(53, 211, 255, 0.50);
+      transform: translateY(-2px);
+    }
+
+    main {
+      position: relative;
+      z-index: 2;
+      padding: 34px 6vw 60px;
+    }
+
+    .mission-card {
+      max-width: 1300px;
+      margin: 0 auto 28px;
+      border: 1px solid var(--border);
+      border-radius: 34px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+    }
+
+    .mission-card h2 {
+      font-size: clamp(1.7rem, 3vw, 2.8rem);
+      letter-spacing: -0.04em;
+      margin-bottom: 12px;
+    }
+
+    .mission-card p {
+      color: var(--soft);
+      font-size: 1.08rem;
+      line-height: 1.75;
+    }
+
+    .pillar-menu {
+      max-width: 1300px;
+      margin: 0 auto 46px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .pillar-button {
+      position: relative;
+      min-height: 250px;
+      border: 1px solid var(--border);
+      border-radius: 34px;
+      padding: 26px;
+      color: var(--white);
+      text-decoration: none;
+      overflow: hidden;
+      background: linear-gradient(150deg, rgba(255,255,255,0.16), rgba(255,255,255,0.06));
+      box-shadow: 0 20px 55px rgba(0,0,0,0.24);
+      transition: 0.25s ease;
+    }
+
+    .pillar-button:hover {
+      transform: translateY(-8px) scale(1.01);
+      border-color: rgba(255,255,255,0.48);
+    }
+
+    .pillar-button::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      right: -60px;
+      bottom: -70px;
+      border-radius: 50%;
+      opacity: 0.70;
+      filter: blur(2px);
+    }
+
+    .pillar-button.sandbox::after { background: var(--yellow); }
+    .pillar-button.fortress::after { background: var(--cyan); }
+    .pillar-button.bridge::after { background: var(--mint); }
+
+    .pillar-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .pillar-button h3 {
+      font-size: 1.7rem;
+      letter-spacing: -0.04em;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .pillar-button p {
+      color: var(--soft);
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    .jump-text {
+      position: absolute;
+      left: 26px;
+      bottom: 24px;
+      font-weight: 800;
+      color: var(--white);
+      z-index: 2;
+    }
+
+    .content-section {
+      max-width: 1300px;
+      margin: 0 auto 34px;
+      scroll-margin-top: 100px;
+      border: 1px solid var(--border);
+      border-radius: 38px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.10);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+    }
+
+    .section-head {
+      padding: 32px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 22px;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.14);
+    }
+
+    .section-symbol {
+      width: 84px;
+      height: 84px;
+      display: grid;
+      place-items: center;
+      border-radius: 28px;
+      font-size: 2.7rem;
+      background: rgba(255,255,255,0.16);
+      border: 1px solid var(--border);
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.8rem, 4vw, 3.6rem);
+      letter-spacing: -0.06em;
+      line-height: 1;
+    }
+
+    .section-head p {
+      margin-top: 10px;
+      color: var(--soft);
+      line-height: 1.65;
+      font-size: 1.02rem;
+    }
+
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      padding: 28px;
+    }
+
+    .rule-card,
+    .single-card {
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 28px;
+      padding: 24px;
+      background: rgba(9, 17, 31, 0.48);
+      transition: 0.25s ease;
+    }
+
+    .rule-card:hover,
+    .single-card:hover {
+      transform: translateY(-4px);
+      background: rgba(9, 17, 31, 0.62);
+    }
+
+    .rule-number {
+      display: inline-grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 15px;
+      background: linear-gradient(135deg, var(--cyan), var(--mint));
+      color: var(--navy);
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .rule-card h3,
+    .single-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+      letter-spacing: -0.03em;
+    }
+
+    .rule-card p,
+    .single-card p {
+      color: var(--soft);
+      line-height: 1.72;
+      font-size: 1rem;
+    }
+
+    .tagline {
+      margin-top: 18px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.10);
+      color: var(--yellow);
+      font-weight: 800;
+      line-height: 1.5;
+    }
+
+    .single-wrap {
+      padding: 28px;
+    }
+
+    .single-card {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 26px;
+      align-items: center;
+    }
+
+    .visual-box {
+      min-height: 260px;
+      border-radius: 26px;
+      border: 1px dashed rgba(255,255,255,0.34);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 22px;
+      background:
+        linear-gradient(135deg, rgba(53,211,255,0.18), rgba(255,255,255,0.04)),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.06) 0 10px, transparent 10px 20px);
+    }
+
+    .visual-box .big {
+      font-size: 5rem;
+      margin-bottom: 10px;
+    }
+
+    .visual-box strong {
+      display: block;
+      font-size: 1.35rem;
+      letter-spacing: -0.03em;
+    }
+
+    .checklist {
+      margin-top: 16px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .check-item {
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.08);
+      color: var(--soft);
+      line-height: 1.55;
+    }
+
+    .credits {
+      max-width: 1300px;
+      margin: 0 auto;
+      border: 1px solid var(--border);
+      border-radius: 34px;
+      padding: 28px;
+      background: rgba(255,255,255,0.10);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+    }
+
+    .credits h2 {
+      font-size: 2rem;
+      letter-spacing: -0.04em;
+      margin-bottom: 16px;
+    }
+
+    .name-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .name-card {
+      padding: 16px;
+      border-radius: 20px;
+      background: rgba(9, 17, 31, 0.48);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: var(--soft);
+      line-height: 1.5;
+      font-weight: 700;
+    }
+
+    footer {
+      position: relative;
+      z-index: 2;
+      padding: 26px 6vw 44px;
+      text-align: center;
+      color: rgba(255,255,255,0.72);
+    }
+
+    .back-top {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(9, 17, 31, 0.70);
+      color: var(--white);
+      cursor: pointer;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.32);
+      opacity: 0;
+      transform: translateY(18px);
+      transition: 0.25s ease;
+      z-index: 30;
+      font-size: 1.35rem;
+    }
+
+    .back-top.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1050px) {
+      .hero,
+      .single-card {
+        grid-template-columns: 1fr;
+      }
+
+      .pillar-menu,
+      .rules-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .name-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 680px) {
+      header,
+      main,
+      nav {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .nav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .section-head {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-panel {
+        min-height: 320px;
+      }
+
+      .status-card {
+        position: relative;
+        inset: auto !important;
+        margin-top: 10px;
+      }
+
+      .shield {
+        height: auto;
+        margin-bottom: 12px;
+      }
+
+      .name-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-grid"></div>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+  <div class="orb three"></div>
+
+  <header id="top">
+    <div class="top-label"><span class="pulse-dot"></span> Mini-Acceptable Use Policy Digital Board</div>
+
+    <section class="hero">
+      <div>
+        <h1>Safe, Smart, and Respectful <span>Digital Learning</span></h1>
+        <p>
+          A student-friendly and parent-accessible Acceptable Use Policy for Senior High School Grade 12 learners. This board turns complex digital safety expectations into clear classroom rules, technical safeguards, and home routines.
+        </p>
+      </div>
+
+      <aside class="hero-panel" aria-label="Digital safety visual panel">
+        <div class="shield">
+          <div class="shield-icon" aria-hidden="true">🛡️</div>
+          <div class="status-card a"><strong>Student Rules</strong><br />Clear online behavior</div>
+          <div class="status-card b"><strong>ICT Guardrail</strong><br />Protected campus network</div>
+          <div class="status-card c"><strong>Parent Check</strong><br />Consistent home routine</div>
+        </div>
+        <div class="grade-badge">
+          <small>Target Learners</small>
+          <h2>Senior High School Grade 12 Students</h2>
+        </div>
+      </aside>
+    </section>
+  </header>
+
+  <nav>
+    <div class="nav-inner">
+      <div class="brand">Grade 12 AUP Board</div>
+      <div class="nav-links" aria-label="Page navigation">
+        <a href="#sandbox">Learner's Sandbox</a>
+        <a href="#fortress">Virtual Fortress</a>
+        <a href="#bridge">Home Bridge</a>
+        <a href="#credits">Team Credits</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="mission-card">
+      <h2>The Challenge & Instruction</h2>
+      <p>
+        As future educators, the group acts as a school ICT committee designing a Mini-AUP for Grade 12 learners. The goal is to set boundaries that are realistic, legally aware, developmentally appropriate, and easy for students and parents to follow.
+      </p>
+    </section>
+
+    <section class="pillar-menu" aria-label="Clickable pillars">
+      <a class="pillar-button sandbox" href="#sandbox">
+        <div class="pillar-icon">🎮</div>
+        <h3>The Learner's Sandbox</h3>
+        <p>Three grade-appropriate digital do's and don'ts for responsible online learning behavior.</p>
+        <span class="jump-text">Open Pillar 1 →</span>
+      </a>
+
+      <a class="pillar-button fortress" href="#fortress">
+        <div class="pillar-icon">🏰</div>
+        <h3>The Virtual Fortress</h3>
+        <p>One backend ICT guardrail that protects learners while using school devices and Wi-Fi.</p>
+        <span class="jump-text">Open Pillar 2 →</span>
+      </a>
+
+      <a class="pillar-button bridge" href="#bridge">
+        <div class="pillar-icon">🌉</div>
+        <h3>The Home Bridge</h3>
+        <p>One practical parent strategy for reinforcing digital safety and wellness at home.</p>
+        <span class="jump-text">Open Pillar 3 →</span>
+      </a>
+    </section>
+
+    <section id="sandbox" class="content-section">
+      <div class="section-head">
+        <div class="section-symbol">🎮</div>
+        <div>
+          <h2>Pillar 1: The Learner's Sandbox</h2>
+          <p>Exactly three student rules written for Grade 12 learners who regularly use search engines, social media, AI tools, cloud storage, and learning management systems.</p>
+        </div>
+      </div>
+
+      <div class="rules-grid">
+        <article class="rule-card">
+          <div class="rule-number">1</div>
+          <h3>Think Before You Post, Share, or Forward</h3>
+          <p>
+            Do share only class-related, respectful, and verified content. Do not post classmates' photos, videos, screenshots, grades, chats, or personal information without clear permission.
+          </p>
+          <div class="tagline">Rule reminder: “Kung hindi sa'yo, huwag i-post.”</div>
+        </article>
+
+        <article class="rule-card">
+          <div class="rule-number">2</div>
+          <h3>Use AI and Online Sources Honestly</h3>
+          <p>
+            Do use AI, websites, and digital references to study, draft, review, and improve your work. Do not copy-paste answers, hide AI use, invent sources, or submit work you cannot explain.
+          </p>
+          <div class="tagline">Rule reminder: “Gamitin ang tool, pero ikaw pa rin ang accountable.”</div>
+        </article>
+
+        <article class="rule-card">
+          <div class="rule-number">3</div>
+          <h3>Keep School Accounts Safe</h3>
+          <p>
+            Do use strong passwords, log out from shared devices, and report suspicious links or account activity. Do not share passwords, open unknown links, or use another person's account.
+          </p>
+          <div class="tagline">Rule reminder: “Account mo, responsibilidad mo.”</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="fortress" class="content-section">
+      <div class="section-head">
+        <div class="section-symbol">🏰</div>
+        <div>
+          <h2>Pillar 2: The Virtual Fortress</h2>
+          <p>Exactly one infrastructure rule for the school ICT team to implement on campus devices and Wi-Fi.</p>
+        </div>
+      </div>
+
+      <div class="single-wrap">
+        <article class="single-card">
+          <div class="visual-box">
+            <div>
+              <div class="big">🔐</div>
+              <strong>Campus SafeSearch + Category Filtering</strong>
+            </div>
+          </div>
+
+          <div>
+            <h3>ICT Guardrail: Filter High-Risk Content and Monitor School-Network Misuse</h3>
+            <p>
+              The school ICT team must activate DNS or firewall-based filtering on campus Wi-Fi and school devices. The filter must block adult content, gambling sites, malware and phishing domains, illegal download pages, proxy or VPN bypass sites, and websites that promote academic cheating. The system must also log repeated attempts to access blocked categories during school hours for guidance-based intervention, not public shaming.
+            </p>
+            <div class="checklist">
+              <div class="check-item">Blocked: pornography, gambling, malware, phishing, illegal downloads, bypass tools, and cheating services.</div>
+              <div class="check-item">Monitored: repeated attempts to bypass filters, suspicious login patterns, and unsafe browsing on school-managed accounts.</div>
+              <div class="check-item">Purpose: learner protection, cybersecurity, academic integrity, and responsible use of school ICT resources.</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="bridge" class="content-section">
+      <div class="section-head">
+        <div class="section-symbol">🌉</div>
+        <div>
+          <h2>Pillar 3: The Home Bridge</h2>
+          <p>Exactly one parent check that connects school expectations with daily digital wellness routines at home.</p>
+        </div>
+      </div>
+
+      <div class="single-wrap">
+        <article class="single-card">
+          <div class="visual-box">
+            <div>
+              <div class="big">🏠</div>
+              <strong>15-Minute Weekly Digital Check-In</strong>
+            </div>
+          </div>
+
+          <div>
+            <h3>Parent Strategy: The “Check, Talk, Reset” Routine</h3>
+            <p>
+              Once a week, parents and Grade 12 learners must spend 15 minutes reviewing school-related device use through a simple routine: check learning apps and deadlines, talk about suspicious messages or online stress, and reset boundaries for sleep, study time, and screen time. This keeps digital safety collaborative rather than punitive.
+            </p>
+            <div class="checklist">
+              <div class="check-item">Check: LMS notifications, class group chats, school email, deadlines, and submitted tasks.</div>
+              <div class="check-item">Talk: online pressure, suspicious links, cyberbullying, AI use, and privacy concerns.</div>
+              <div class="check-item">Reset: device charging outside the bed area, study-first screen schedule, and no late-night academic cramming online.</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="credits" class="credits">
+      <h2>Designed By</h2>
+      <div class="name-grid">
+        <div class="name-card">Surname001, Given Name 001, MI001</div>
+        <div class="name-card">Surname002, Given Name 002, MI002</div>
+        <div class="name-card">Surname003, Given Name 003, MI003</div>
+        <div class="name-card">Surname004, Given Name 004, MI004</div>
+        <div class="name-card">Surname005, Given Name 005, MI005</div>
+      </div>
+    </section>
+  </main>
+
+  <button class="back-top" type="button" aria-label="Back to top">↑</button>
+
+  <footer>
+    Grade 12 Mini-AUP Digital Board | Safe Learning Environment | Student-Friendly and Parent-Accessible
+  </footer>
+
+  <script>
+    const links = document.querySelectorAll('.nav-links a');
+    const sections = [...document.querySelectorAll('section[id]')];
+    const backTop = document.querySelector('.back-top');
+
+    function setActiveLink() {
+      let current = '';
+
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 140;
+        if (window.scrollY >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      links.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+
+      if (window.scrollY > 500) {
+        backTop.classList.add('show');
+      } else {
+        backTop.classList.remove('show');
+      }
+    }
+
+    links.forEach(link => {
+      link.addEventListener('click', event => {
+        const targetId = link.getAttribute('href');
+        const target = document.querySelector(targetId);
+        if (!target) return;
+
+        event.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    document.querySelectorAll('.pillar-button').forEach(card => {
+      card.addEventListener('mousemove', event => {
+        const rect = card.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.24), rgba(255,255,255,0.08) 42%, rgba(255,255,255,0.05))`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.background = 'linear-gradient(150deg, rgba(255,255,255,0.16), rgba(255,255,255,0.06))';
+      });
+    });
+
+    backTop.addEventListener('click', () => {
+      document.querySelector('#top').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    window.addEventListener('scroll', setActiveLink);
+    setActiveLink();
+  </script>
+</body>
+</html>
